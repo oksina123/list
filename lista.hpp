@@ -100,12 +100,44 @@ public:
             iter=iter->next;
         }
     }
+// stan poczatkowy:
 
+//          prev      iter
+// [ 1 ] -> [ 2 ] -> [ 3 ] -> [ 4 ]
+//                ^
+//               [ 5 ] new_element
+// rezultat:
+// [ 1 ] -> [ 2 ] -> [ 5 ] -> [ 3 ] -> [ 4 ]
+// index = 3
+//
     void insert(int index, T arg) 
-    {
+    {   
         element* iter=head;
         element* prev=NULL;
-        
+        int i=0;
+        while(iter!=NULL)
+        {
+            if(i==index)
+            {
+                
+                element* new_element=new element;
+                new_element->value=arg;
+                if(prev!=NULL)
+                {
+                    prev->next=new_element;
+                }
+                else
+                {
+                    head=new_element;
+                }
+                new_element->next=iter;
+                break;
+                
+            }
+            i++;
+            prev=iter;
+            iter=iter->next;
+        }
     }
 };
 
